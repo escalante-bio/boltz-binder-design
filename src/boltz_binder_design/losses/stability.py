@@ -52,7 +52,7 @@ class StabilityModel(TrunkLoss):
         esm_embedding = esm_embedding * (1 - mask_ratio_train)
         # apply ESM trunk
         esm_embedding = self.esm._apply_trunk(
-            esm_embedding, np.ones((esm_toks.shape[0], esm_toks.shape[0]))
+            esm_embedding, np.zeros(esm_toks.shape[0])
         )
         # ln
         esm_embedding = jax.vmap(
